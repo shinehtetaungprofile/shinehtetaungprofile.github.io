@@ -13,10 +13,22 @@
             padding: 30px; 
             color: #333; 
         }
+        .header-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%; /* This makes the image a perfect circle */
+            object-fit: cover;
+            border: 4px solid #27ae60;
+            margin-bottom: 15px;
+        }
         h1 { color: #2c3e50; margin-bottom: 5px; }
         h2 { color: #27ae60; border-bottom: 2px solid #27ae60; padding-bottom: 5px; margin-top: 30px; }
         h3 { color: #2980b9; margin-bottom: 5px; }
-        .contact-info { font-style: italic; color: #7f8c8d; margin-bottom: 30px; }
+        .contact-info { font-style: italic; color: #7f8c8d; }
         .date-location { font-size: 0.9em; color: #555; font-style: italic; margin-top: -10px; margin-bottom: 10px; }
         ul { margin-top: 5px; }
         a { color: #2980b9; text-decoration: none; }
@@ -24,7 +36,10 @@
     </style>
 </head>
 <body>
-    <h1>Shine Htet Aung</h1><p class="contact-info">Agricultural Researcher | Horticulture Graduate | Sustainable Agriculture Advocate</p>
+    <div class="header-section">
+        <img src="profile.jpg" alt="Shine Htet Aung" class="profile-photo">
+        <h1>Shine Htet Aung</h1><p class="contact-info">Agricultural Researcher | Horticulture Graduate | Sustainable Agriculture Advocate</p>
+    </div>
 
     <h2>About Me</h2><p>I am a detail-oriented graduate from Yezin Agricultural University, majoring in Horticulture, with a strong interest in sustainable agriculture.I am passionate about supporting rural communities by advocating for sustainable practices that reduce the use of synthetic agrochemicals and promote the use of organic fertilisers.I am committed to applying my academic knowledge and practical experience to help adapt to climate change challenges while modernising the agricultural sector through advanced technologies.</p>
 
