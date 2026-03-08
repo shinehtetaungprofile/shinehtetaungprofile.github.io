@@ -5,86 +5,335 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shine Htet Aung - Professional Portfolio</title>
     <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #27ae60;
+            --bg-color: #f4f7f6;
+            --text-color: #333;
+            --card-bg: #ffffff;
+        }
+
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             line-height: 1.6; 
-            margin: 0 auto; 
-            max-width: 800px; 
-            padding: 30px; 
-            color: #333; 
+            margin: 0; 
+            padding: 0; 
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            display: flex;
+            min-height: 100vh;
         }
-        .header-section {
-            text-align: center;
-            margin-bottom: 40px;
+
+        /* Sidebar Navigation Layout */
+        .sidebar {
+            width: 300px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            height: 100vh;
+            box-sizing: border-box;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
         }
+
         .profile-photo {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%; /* This makes the image a perfect circle */
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
             object-fit: cover;
-            border: 4px solid #27ae60;
-            margin-bottom: 15px;
+            border: 4px solid var(--accent-color);
+            margin-bottom: 20px;
+            background-color: white;
         }
-        h1 { color: #2c3e50; margin-bottom: 5px; }
-        h2 { color: #27ae60; border-bottom: 2px solid #27ae60; padding-bottom: 5px; margin-top: 30px; }
-        h3 { color: #2980b9; margin-bottom: 5px; }
-        .contact-info { font-style: italic; color: #7f8c8d; }
-        .date-location { font-size: 0.9em; color: #555; font-style: italic; margin-top: -10px; margin-bottom: 10px; }
-        ul { margin-top: 5px; }
-        a { color: #2980b9; text-decoration: none; }
+
+        .sidebar h1 { 
+            font-size: 1.5rem; 
+            margin: 0 0 5px 0; 
+            text-align: center;
+        }
+
+        .contact-info { 
+            font-size: 0.85rem; 
+            color: #bdc3c7; 
+            text-align: center;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        /* Navigation Menu */
+        nav {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            color: #ecf0f1;
+            padding: 12px 20px;
+            text-align: left;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding-left: 25px;
+        }
+
+        .nav-btn.active {
+            background-color: var(--accent-color);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            margin-left: 300px;
+            padding: 50px;
+            width: calc(100% - 300px);
+            box-sizing: border-box;
+        }
+
+        .section-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: none; /* Hidden by default */
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        /* Show the active section */
+        .section-container.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Typography & Internal Styling */
+        h2 { 
+            color: var(--accent-color); 
+            border-bottom: 2px solid #eee; 
+            padding-bottom: 10px; 
+            margin-top: 0; 
+        }
+        h3 { color: var(--primary-color); margin-bottom: 5px; }
+        .date-location { font-size: 0.9em; color: #7f8c8d; font-style: italic; margin-top: -10px; margin-bottom: 15px; }
+        ul { margin-top: 10px; padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        a { color: var(--accent-color); text-decoration: none; font-weight: bold; }
         a:hover { text-decoration: underline; }
+
+        .social-links {
+            margin-top: auto;
+            padding-top: 30px;
+            text-align: center;
+        }
+
+        .social-links a {
+            color: white;
+            display: block;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                padding: 30px 20px;
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding: 20px;
+            }
+            nav {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .nav-btn {
+                text-align: center;
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+            .nav-btn:hover { padding-left: 10px; }
+            .social-links { margin-top: 20px; }
+        }
     </style>
 </head>
 <body>
-    <div class="header-section">
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
         <img src="headshot.jpg.jpeg" alt="Shine Htet Aung" class="profile-photo">
-        <h1>Shine Htet Aung</h1><p class="contact-info">Agricultural Researcher | Horticulture Graduate | Sustainable Agriculture Advocate</p>
-    </div>
+        <h1>Shine Htet Aung</h1>
+        <p class="contact-info">Agricultural Researcher<br>Sustainable Agriculture Advocate</p>
+        
+        <nav>
+            <!-- The onclick events trigger the javascript at the bottom to switch pages -->
+            <button class="nav-btn active" onclick="showSection('about', this)">About Me</button>
+            <button class="nav-btn" onclick="showSection('experience', this)">Work Experience</button>
+            <button class="nav-btn" onclick="showSection('education', this)">Education & Projects</button>
+            <button class="nav-btn" onclick="showSection('awards', this)">Honours & Awards</button>
+            <button class="nav-btn" onclick="showSection('volunteering', this)">Volunteering</button>
+        </nav>
 
-    <h2>About Me</h2><p>I am a detail-oriented graduate from Yezin Agricultural University, majoring in Horticulture, with a strong interest in sustainable agriculture.I am passionate about supporting rural communities by advocating for sustainable practices that reduce the use of synthetic agrochemicals and promote the use of organic fertilisers.I am committed to applying my academic knowledge and practical experience to help adapt to climate change challenges while modernising the agricultural sector through advanced technologies.</p>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/shine-htet-aung-yau/" target="_blank">Connect on LinkedIn</a>
+            <a href="mailto:shinehtetaungyau@gmail.com">Email Me</a>
+        </div>
+    </aside>
 
-    <h2>Work Experience</h2><h3>Research Enumerator</h3><p class="date-location">Proximity Designs | Jun 2025 - Current</p>
-    <ul>
-        <li>Collaborating with the data management team within the social impact department to input data, discuss processes, and suggest improvements.</li>
-        <li>Collecting data via phone calls to farmers regarding adoption and impact assessment surveys under Sustainability projects.</li>
-    </ul>
+    <!-- MAIN CONTENT AREA -->
+    <main class="main-content">
+        
+        <!-- ABOUT PAGE -->
+        <section id="about" class="section-container active">
+            <h2>About Me</h2>
+            <p>I am a detail-oriented graduate from Yezin Agricultural University, majoring in Horticulture, with a strong interest in sustainable agriculture. I am passionate about supporting rural communities by advocating for sustainable practices that reduce the use of synthetic agrochemicals and promote the use of organic fertilisers.</p>
+            <p>Curious about technology and eager to modernise the agricultural sector, I aim to utilize advanced technologies that enhance resource efficiency and increase productivity, ultimately benefiting regional and global food security. I am committed to applying my academic knowledge and practical experience to help adapt to climate change challenges while raising awareness on both local and global scales.</p>
+        </section>
 
-    <h3>Field Coordinator</h3><p class="date-location">Tunyat Company | Feb 2025 - May 2025</p>
-    <ul>
-        <li>Served as a primary contact for small-scale farmers under the Swiss Project focusing on Climate Smart Agriculture.</li>
-        <li>Coordinated farmers' participation, including training modules, mentoring, and community project implementation.</li>
-    </ul>
+        <!-- EXPERIENCE PAGE -->
+        <section id="experience" class="section-container">
+            <h2>Work Experience</h2>
+            
+            <h3>Research Enumerator</h3>
+            <p class="date-location">Proximity Designs | Jun 2025 - Current</p>
+            <ul>
+                <li>Collaborating with the data management team within the social impact department to input data, discuss overall processes, and suggest improvements.</li>
+                <li>Collecting data via phone calls to farmers regarding adoption and impact assessment surveys under Sustainability projects.</li>
+            </ul>
 
-    <h3>Intern - Department of Horticulture</h3><p class="date-location">Yezin Agricultural University | Dec 2023 - Jan 2024</p>
-    <ul>
-        <li>Managed mushroom cultivation using various growing media in a polytunnel environment.</li>
-        <li>Assessed water-use efficiency in salad crop production by comparing drip irrigation and manual watering methods.</li>
-    </ul>
+            <h3>Field Coordinator</h3>
+            <p class="date-location">Tunyat Company | Feb 2025 - May 2025</p>
+            <ul>
+                <li>Served as a primary contact person for small-scale farmers under the Swiss Project, focusing on Climate Smart Agriculture.</li>
+                <li>Coordinated farmers' participation, including training modules, follow-up, mentoring, and community project implementation.</li>
+            </ul>
 
-    <h3>Head of Operations & Co-founder</h3><p class="date-location">Compost Point Myanmar | Aug 2022 - Apr 2023</p>
-    <ul>
-        <li>Organised and delivered online training sessions on Bokashi composting and independently produced Bokashi powder products.</li>
-        <li>Managed communication and logistics for remote training and evaluated training effectiveness.</li>
-    </ul>
+            <h3>Intern - Department of Horticulture</h3>
+            <p class="date-location">Yezin Agricultural University | Dec 2023 - Jan 2024</p>
+            <ul>
+                <li>Managed mushroom cultivation using various growing media in a polytunnel environment.</li>
+                <li>Assessed water-use efficiency in salad crop production by comparing drip irrigation and manual watering methods.</li>
+                <li>Compiled and submitted detailed reports and designed a showcase poster.</li>
+            </ul>
 
-    <h2>Education & Projects</h2><h3>Bachelor of Agricultural Science (Horticulture)</h3><p class="date-location">Yezin Agricultural University | 2016 - 2025</p>
-    <ul>
-        <li><strong>Thesis/Project:</strong> Effects of different container sizes and media mixtures on the growth, yield, and quality of tomato (Solanum lycopersicum L.).</li>
-    </ul>
+            <h3>Head of Operations & Co-founder</h3>
+            <p class="date-location">Compost Point Myanmar | Aug 2022 - Apr 2023</p>
+            <ul>
+                <li>Organised and delivered online training sessions on Bokashi composting and independently produced Bokashi powder products.</li>
+                <li>Managed communication and logistics for remote training sessions and evaluated training effectiveness.</li>
+            </ul>
+        </section>
 
-    <h2>Honours & Awards</h2><ul>
-        <li><strong>2025 Mekong Regional Training:</strong> Participated in "Climate Smart Agriculture for Sustainable and Safe Crop Production" in Khon Kaen, Thailand.</li>
-        <li><strong>2025 YSEALI Regional Workshop (AI FutureMakers):</strong> Selected participant for the innovation workshop in Chonburi, Thailand.</li>
-        <li><strong>2022 Circular Agriculture and Innovation Challenge (Winner):</strong> Led the youth-led group "Soil Warriors" and founded "Compost Point Myanmar" to promote organic practices.</li>
-    </ul>
+        <!-- EDUCATION PAGE -->
+        <section id="education" class="section-container">
+            <h2>Education & Academic Projects</h2>
+            
+            <h3>Bachelor of Agricultural Science (Horticulture)</h3>
+            <p class="date-location">Yezin Agricultural University | 2016 - 2025</p>
+            
+            <h3 style="margin-top: 30px;">Key Academic Project</h3>
+            <p class="date-location">Dec 2022 - Jan 2024</p>
+            <ul>
+                <li><strong>Thesis Research:</strong> Effects of different container sizes and media mixtures on the growth, yield, and quality of tomato (Solanum lycopersicum L.).</li>
+                <li>Conducted quantitative analysis and qualitative research to determine optimal growth conditions.</li>
+            </ul>
+        </section>
 
-    <h2>Volunteering</h2><ul>
-        <li><strong>Community Youth Initiator:</strong> Led community youth initiatives teaching digital skills and personal development through Myanmar Youth Empowerment Opportunities.</li>
-        <li><strong>Student Exchange:</strong> Participated in a program with Hong Kong Polytechnic University, fostering international collaboration.</li>
-    </ul>
-    
-    <p style="margin-top: 40px; text-align: center;">
-        <em>Let's connect! Find me on <a href="https://www.linkedin.com/in/shine-htet-aung-yau/" target="_blank">LinkedIn</a>or reach out via <a href="mailto:shinehtetaungyau@gmail.com">Email</a>.</em>
-    </p>
+        <!-- AWARDS PAGE -->
+        <section id="awards" class="section-container">
+            <h2>Honours & Awards</h2>
+            
+            <h3>2025 Mekong Regional Training</h3>
+            <p class="date-location">Mekong Institute | Oct 2025</p>
+            <ul>
+                <li>Participated in "Climate Smart Agriculture for Sustainable and Safe Crop Production" held in Khon Kaen, Thailand.</li>
+            </ul>
+
+            <h3>2025 YSEALI Regional Workshop: AI FutureMakers</h3>
+            <p class="date-location">Young South East Asian Leaders Initiative | Jun 2025</p>
+            <ul>
+                <li>Selected participant for the prestigious innovation workshop held in Chonburi, Thailand, focusing on innovating for a better future.</li>
+            </ul>
+
+            <h3>2022 Circular Agriculture and Innovation Challenge - Winner</h3>
+            <p class="date-location">East-West Center | Nov 2022</p>
+            <ul>
+                <li>Awarded as the winning team out of a highly competitive pool.</li>
+                <li>Demonstrated innovation and leadership by guiding the youth-led group "Soil Warriors."</li>
+                <li>Founded the project-based initiative "Compost Point Myanmar" to promote organic practices to rural and urban communities.</li>
+            </ul>
+        </section>
+
+        <!-- VOLUNTEERING PAGE -->
+        <section id="volunteering" class="section-container">
+            <h2>Volunteering & Community Impact</h2>
+            
+            <h3>Community Youth Initiator</h3>
+            <p class="date-location">Myanmar Youth Empowerment Opportunities | Aug 2022 - Dec 2022</p>
+            <ul>
+                <li>Led community youth initiatives to teach digital skills and personal development to young people from diverse regions.</li>
+                <li>Participated in a student exchange program with Hong Kong Polytechnic University, fostering international collaboration and cultural exchange.</li>
+                <li>Attended a "Teacher Training on Online Safety and Media Literacy" in collaboration with Google.org and the ASEAN Foundation.</li>
+            </ul>
+        </section>
+
+        <!-- CONTACT FOOTER (Always Visible) -->
+        <div style="margin-top: 50px; text-align: center; padding-top: 20px; border-top: 1px solid #eee;">
+            <p><em>Let's connect! Find me on <a href="https://www.linkedin.com/in/shine-htet-aung-yau/" target="_blank">LinkedIn</a> or reach out via <a href="mailto:shinehtetaungyau@gmail.com">Email</a>.</em></p>
+        </div>
+
+    </main>
+
+    <!-- JAVASCRIPT FOR CHANGING PAGES -->
+    <script>
+        function showSection(sectionId, btnElement) {
+            // 1. Hide all sections
+            const sections = document.querySelectorAll('.section-container');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // 2. Remove 'active' highlight from all buttons
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // 3. Show the target section
+            document.getElementById(sectionId).classList.add('active');
+
+            // 4. Highlight the clicked button
+            btnElement.classList.add('active');
+            
+            // 5. Scroll to top on mobile when clicking a link
+            if (window.innerWidth <= 768) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
 </body>
 </html>
